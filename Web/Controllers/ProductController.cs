@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Business;
-using Data;
-using Entity;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -11,7 +10,19 @@ namespace Web.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
-            return View();
+            BProduct business = new BProduct();
+
+            var products = business.Get();
+
+            var model = products.Select(x => new ProductModel
+            {
+                ProductId = x.ProductId,
+                Name = x.Name,
+                Price = x.Price,
+                Stock = x.Stock,
+                Active = x.Active
+            });
+            return View(model);
         }
 
         // GET: ProductController/Details/5

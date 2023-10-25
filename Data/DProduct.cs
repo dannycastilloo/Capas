@@ -16,39 +16,16 @@ namespace Data
     {
         public static string connectionString = "Data Source=LAB1504-08\\SQLEXPRESS; Initial Catalog=Lab08; User ID=Danny; Password=123456";
 
-        public static List<Product> ListCustomer()
+        public List<Product> Get()
         {
-            List<Product> products = new List<Product>();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            var result = new List<Product>
             {
-                connection.Open();
+                new Product { ProductId = 4, Name = "Teclado", Price = 350, Stock = 10, Active = true },
+                new Product { ProductId = 5, Name = "Teclado", Price = 350, Stock = 10, Active = true }
+            };
 
-                string query = "ListProducts";
+            return result;
 
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            Console.WriteLine("Products List: ");
-                            while (reader.Read())
-                            {
-                                products.Add(new Product()
-                                {
-                                    Name = (string)reader["name"],
-                                    Price = (decimal)reader["price"],
-                                    Stock = (int)reader["stock"],
-                                    Active = (bool)reader["active"]
-                                });
-                            }
-                        }
-                    }
-                }
-                connection.Close();
-            }
-            return products;
         }
     }
 }

@@ -11,29 +11,10 @@ namespace Business
 {
     public class BProduct
     {
-        private DProduct data;
-        public BProduct()
+        public List<Product> Get()
         {
-            data = new DProduct();
-        }
-
-        public List<Product> GetByName(string Name)
-        {
-            List<Product> result = new List<Product>();
-
-            // Obtengo todos los productos
-            var products = data.Get();
-
-            // Filtro por nombre
-            foreach (var item in products)
-            {
-                if (item.Name == Name)
-                {
-                    result.Add(item);
-                }
-            }
-
-            return result;
+            DProduct data = new DProduct();
+            return data.Get();
         }
     }
 }
