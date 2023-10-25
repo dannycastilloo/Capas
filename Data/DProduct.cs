@@ -14,7 +14,7 @@ namespace Data
 {
     public class DProduct
     {
-        public static string connectionString = "Data Source=LAB1504-06\\SQLEXPRESS; Initial Catalog=Lab07; User ID=Danny; Password=123456";
+        public static string connectionString = "Data Source=LAB1504-08\\SQLEXPRESS; Initial Catalog=Lab08; User ID=Danny; Password=123456";
 
         public static List<Product> ListCustomer()
         {
